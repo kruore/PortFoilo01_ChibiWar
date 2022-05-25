@@ -55,8 +55,10 @@
   <ItemGroup>
     <Compile Include="Assets\Character Asset\_Scripts\Demo.cs" />
     <Compile Include="Assets\Script\Manager\GM_GameManager.cs" />
+    <Compile Include="Assets\Script\Manager\InputManager.cs" />
     <Compile Include="Assets\Script\Player\Player.cs" />
     <Compile Include="Assets\Script\Skill\Skill.cs" />
+    <Compile Include="Assets\Script\Utills\Define.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Character Asset\_Shader\SoftSurface.shader" />

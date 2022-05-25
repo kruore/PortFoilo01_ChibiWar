@@ -5,10 +5,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 // Player Scipts
 public class Player : MonoBehaviour
 {
+    #region UnityComponent
+    Camera camera;
+    #endregion
 
     #region Player Input
 
@@ -18,6 +22,11 @@ public class Player : MonoBehaviour
     public Vector3 playerRot;
     public Vector3 mousePos;
     public float rotAngle;
+
+
+    //Move Var
+    public Vector3 destination;
+    public bool isMove;
     
     // State
     [SerializeField] protected int hp { get; set; }
@@ -36,6 +45,7 @@ public class Player : MonoBehaviour
     {
         playerTransform = playCharacter.GetComponent<Transform>();
         PlayerInit();
+
     }
     void Start()
     {
@@ -45,8 +55,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        GetKey();
-        GetRotate();
+        GetKey();   
     }
     #endregion
 
@@ -62,12 +71,35 @@ public class Player : MonoBehaviour
         slideGage = 0;
         slideSpeed = 0;
         reGenHp = 0;
+        camera = Camera.main;
     }
     /// <summary>
     /// Player Rotate Changed
     /// </summary>
-    private void GetRotate()
+    private void GetKey()
     {
+      
+        if(Input.GetMouseButton(1))
+        {
+           OnMouseClick_LookAt(Define.MouseEvent.LeftPress);
+        }
+        if(Input.GetMouseButton(0))
+        {
+            OnMouseClick_ToMove(Define.MouseEvent.RightPress);
+        }
+
+        if(isMove)
+        {
+            Move();
+        }
+
+    }
+
+    void OnMouseClick_LookAt(Define.MouseEvent evt)
+    {
+        if (evt != Define.MouseEvent.LeftPress)
+            return;
+
         Ray cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
         Plane GroupPlane = new Plane(Vector3.up, Vector3.zero);
 
@@ -77,41 +109,44 @@ public class Player : MonoBehaviour
         {
             Vector3 pointTolook = cameraRay.GetPoint(rayLength);
 
-           transform.LookAt(new Vector3(pointTolook.x, transform.position.y, pointTolook.z));
+            transform.LookAt(new Vector3(pointTolook.x, transform.position.y, pointTolook.z));
         }
     }
-    /// <summary>
-    /// Player Transform Changed
-    /// </summary>
-    private void GetKey()
+
+    void OnMouseClick_ToMove(Define.MouseEvent evt)
     {
-        //조작 1
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
+        if (evt != Define.MouseEvent.RightPress)
+            return;
 
-        Vector3 inputDirection = new Vector3(horizontal, 0, vertical);
-        Vector3 transformDirction = transform.TransformDirection(inputDirection);
-        Vector3 flatMovement = speed * Time.deltaTime * transformDirction;
+        Ray cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Plane GroupPlane = new Plane(Vector3.up, Vector3.zero);
 
-        transform.position = transform.position += flatMovement;
+        float rayLength;
 
-        // 조작 2
-        if (Input.GetKey(KeyCode.W))
+        if (GroupPlane.Raycast(cameraRay, out rayLength))
         {
-            playerTransform.position += Vector3.forward * Time.deltaTime * speed;
-        }
-        if(Input.GetKey(KeyCode.A))
-        {
-            playerTransform.position += Vector3.left * Time.deltaTime * speed;
-        }
-        if(Input.GetKey(KeyCode.S))
-        {
-            playerTransform.position += Vector3.back * Time.deltaTime * speed;
-        }
-        if(Input.GetKey(KeyCode.D))
-        {
-            playerTransform.position += Vector3.right * Time.deltaTime * speed;
+            CharacterMove(cameraRay.GetPoint(rayLength));
         }
     }
+
+    void CharacterMove(Vector3 dest)
+    {
+        destination = dest;
+        isMove = true;
+    }
+    private void Move()
+    {
+        if (isMove)
+        {
+            if (Vector3.Distance(destination, transform.position) <= 0.1f)
+            {
+                isMove = false;
+                return;
+            }
+            var dir = destination - transform.position;
+            transform.position += dir.normalized * Time.deltaTime * 5f;
+        }
+    }
+ 
     #endregion
 }

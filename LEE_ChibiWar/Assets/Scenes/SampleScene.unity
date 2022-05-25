@@ -145,6 +145,8 @@ MonoBehaviour:
   playerRot: {x: 0, y: 0, z: 0}
   mousePos: {x: 0, y: 0, z: 0}
   rotAngle: 0
+  destination: {x: 0, y: 0, z: 0}
+  isMove: 0
 --- !u!1 &673491861
 GameObject:
   m_ObjectHideFlags: 0
