@@ -12,4 +12,5 @@ public class Skill
     public int damage;
     public int time;
     public float speed;
+    public float coolTime;
 }

@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
 {
     #region UnityComponent
     Camera camera;
+    Animator _animator;
     #endregion
 
     #region Player Input
@@ -27,6 +28,20 @@ public class Player : MonoBehaviour
     //Move Var
     public Vector3 destination;
     public bool isMove;
+
+    //Hit State
+    bool isHit;
+    public bool Hited
+    {
+        get { return isHit; }
+        set
+        {
+            if (isHit==value)
+            {
+                _animator.Play("Hit");
+            }
+        }
+    }
     
     // State
     [SerializeField] protected int hp { get; set; }
@@ -45,7 +60,7 @@ public class Player : MonoBehaviour
     {
         playerTransform = playCharacter.GetComponent<Transform>();
         PlayerInit();
-
+        _animator = GetComponent<Animator>();
     }
     void Start()
     {
@@ -79,25 +94,29 @@ public class Player : MonoBehaviour
     private void GetKey()
     {
       
-        if(Input.GetMouseButton(1))
-        {
-           OnMouseClick_LookAt(Define.MouseEvent.LeftPress);
-        }
         if(Input.GetMouseButton(0))
         {
+           OnMouseClick_LookAt(Define.MouseEvent.RightPress);
             OnMouseClick_ToMove(Define.MouseEvent.RightPress);
+        }
+        if(Input.GetMouseButton(1))
+        {
         }
 
         if(isMove)
         {
             Move();
         }
+        else
+        {
+            Idle();
+        }
 
     }
 
     void OnMouseClick_LookAt(Define.MouseEvent evt)
     {
-        if (evt != Define.MouseEvent.LeftPress)
+        if (evt != Define.MouseEvent.RightPress)
             return;
 
         Ray cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -128,7 +147,6 @@ public class Player : MonoBehaviour
             CharacterMove(cameraRay.GetPoint(rayLength));
         }
     }
-
     void CharacterMove(Vector3 dest)
     {
         destination = dest;
@@ -145,6 +163,15 @@ public class Player : MonoBehaviour
             }
             var dir = destination - transform.position;
             transform.position += dir.normalized * Time.deltaTime * 5f;
+        }
+    }
+
+    private void Idle()
+    {
+        if(!isMove)
+        {
+            _animator.Play("IDLE_A");
+            return;
         }
     }
  

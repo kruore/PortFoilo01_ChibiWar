@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="Assets\Character Asset\_Scripts\Demo.cs" />
     <Compile Include="Assets\Script\Manager\GM_GameManager.cs" />
+    <Compile Include="Assets\Script\Manager\GM_MapManager.cs" />
     <Compile Include="Assets\Script\Manager\InputManager.cs" />
     <Compile Include="Assets\Script\Player\Player.cs" />
     <Compile Include="Assets\Script\Skill\Skill.cs" />
