@@ -101,8 +101,8 @@
     <Compile Include="Assets\KriptoFX\Realistic Effects Pack v4\SceneResources\Other\RFX4_RealtimeReflection.cs" />
     <Compile Include="Assets\Script\Manager\GM_GameManager.cs" />
     <Compile Include="Assets\Script\Manager\GM_MapManager.cs" />
-    <Compile Include="Assets\Script\Manager\InputManager.cs" />
-    <Compile Include="Assets\Script\Player\Player.cs" />
+    <Compile Include="Assets\Script\Player\CreateController.cs" />
+    <Compile Include="Assets\Script\Player\PlayerController.cs" />
     <Compile Include="Assets\Script\Skill\PS_FireBall.cs" />
     <Compile Include="Assets\Script\Skill\P_SkillHolder.cs" />
     <Compile Include="Assets\Script\Skill\Skill.cs" />
