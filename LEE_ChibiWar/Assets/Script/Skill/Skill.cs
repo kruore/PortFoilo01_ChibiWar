@@ -11,6 +11,7 @@ public class Skill
     public float speed;
     public float coolTime;
     public float activeTime;
+    public GameObject skill_Effect;
 
     public virtual void Activate()
     {

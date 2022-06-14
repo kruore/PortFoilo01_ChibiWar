@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class P_SkillHolder : MonoBehaviour
 {
+    [SerializeField]
     public Skill skill;
     float cooldownTime;
     float activeTime;
@@ -15,8 +16,11 @@ public class P_SkillHolder : MonoBehaviour
     }
     SkillState state = SkillState.ready;
     public KeyCode key;
-
-    private void Update()
+    public void start()
+    {
+        skill = new PS_FireBall();
+    }
+    private void FixedUpdate()
     {
         switch (state)
         {
@@ -26,6 +30,9 @@ public class P_SkillHolder : MonoBehaviour
                     skill.Activate();
                     state = SkillState.active;
                     activeTime = skill.activeTime;
+                    Instantiate(skill.skill_Effect, gameObject.transform);
+                    Debug.Log("Active");
+
                     //Activate
                 }
                 break;

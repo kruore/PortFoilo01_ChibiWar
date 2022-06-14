@@ -54,6 +54,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Assets\Character Asset\_Scripts\Demo.cs" />
+    <Compile Include="Assets\Hovl Studio\Epic toon VFX 2\Demo scene\DemoToonVFX.cs" />
+    <Compile Include="Assets\Hovl Studio\Epic toon VFX 2\Prefabs\Front attack\FrontMover.cs" />
+    <Compile Include="Assets\Hovl Studio\Epic toon VFX 2\Scripts\EGA_EffectSound.cs" />
+    <Compile Include="Assets\Hovl Studio\Epic toon VFX 2\Scripts\ParticleCollisionInstance.cs" />
     <Compile Include="Assets\KriptoFX\Realistic Effects Pack v4\Effects\Scripts\Curves\RFX4_AudioCurves.cs" />
     <Compile Include="Assets\KriptoFX\Realistic Effects Pack v4\Effects\Scripts\Curves\RFX4_LightCurves.cs" />
     <Compile Include="Assets\KriptoFX\Realistic Effects Pack v4\Effects\Scripts\Curves\RFX4_PhysicsForceCurves.cs" />
@@ -111,11 +115,17 @@
   <ItemGroup>
     <None Include="Assets\KriptoFX\Realistic Effects Pack v4\Effects\Shaders\Portal\RFX4_PortalSky.shader" />
     <None Include="Assets\Character Asset\_Shader\SoftSurface.shader" />
+    <None Include="Assets\Hovl Studio\Epic toon VFX 2\Prefabs\Punches\Readme.txt" />
     <None Include="Assets\KriptoFX\Realistic Effects Pack v4\Effects\Shaders\Portal\RFX4_PortalMask.shader" />
     <None Include="Assets\KriptoFX\Realistic Effects Pack v4\Effects\Shaders\RFX4_Tornado.shader" />
     <None Include="Assets\KriptoFX\Realistic Effects Pack v4\Effects\Shaders\RFX4_Lightning.shader" />
+    <None Include="Assets\Hovl Studio\Epic toon VFX 2\Shaders\Add_Fresnel.shader" />
+    <None Include="Assets\Hovl Studio\Epic toon VFX 2\Shaders\Blend_TwoSides.shader" />
+    <None Include="Assets\Hovl Studio\Epic toon VFX 2\Demo scene\Readme.txt" />
+    <None Include="Assets\Hovl Studio\Epic toon VFX 2\Shaders\Blend_CenterGlow.shader" />
     <None Include="Assets\KriptoFX\Realistic Effects Pack v4\Effects\Shaders\Portal\RFX4_TranperentDiffuse.shader" />
     <None Include="Assets\KriptoFX\Realistic Effects Pack v4\Effects\Shaders\RFX4_UberParticleShader.shader" />
+    <None Include="Assets\Hovl Studio\Epic toon VFX 2\Shaders\Lightning.shader" />
     <None Include="Assets\KriptoFX\Realistic Effects Pack v4\Effects\Shaders\RFX4_UberDecal.shader" />
     <None Include="Assets\KriptoFX\Realistic Effects Pack v4\Effects\Shaders\Portal\RFX4_PortalRockStencil.shader" />
     <None Include="Assets\KriptoFX\Realistic Effects Pack v4\Effects\Shaders\RFX4_UberDistortion.shader" />
@@ -124,6 +134,8 @@
     <None Include="Assets\KriptoFX\Realistic Effects Pack v4\Effects\Shaders\DemoMobileDiffuse.shader" />
     <None Include="Assets\KriptoFX\Realistic Effects Pack v4\Readme.txt" />
     <None Include="Assets\KriptoFX\Realistic Effects Pack v4\Effects\Shaders\Portal\RFX4_PortalRock.shader" />
+    <None Include="Assets\Hovl Studio\Epic toon VFX 2\Shaders\Add_CenterGlow.shader" />
+    <None Include="Assets\Hovl Studio\Epic toon VFX 2\Demo scene\HDRP and URP(LWRP).txt" />
     <None Include="Assets\Character Asset\_Shader\ToonRamp.shader" />
     <None Include="Assets\KriptoFX\Realistic Effects Pack v4\Effects\Shaders\RFX4_CutoutBorder.shader" />
     <None Include="Assets\KriptoFX\Realistic Effects Pack v4\Effects\Shaders\RFX4_ParallaxDecal.shader" />

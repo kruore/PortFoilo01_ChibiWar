@@ -21,6 +21,11 @@ public class PlayerController : CreateController
     #endregion
 
     #region Unity LifeCycle
+
+    private void Start()
+    {
+        skillHolded();
+    }
     private void FixedUpdate()
     {
         GetKey();
@@ -40,10 +45,6 @@ public class PlayerController : CreateController
                 mousePosition = Input.mousePosition;
             }
         }
-        if (Input.GetKey(KeyCode.Q))
-        {
-            Debug.Log("Skill 01");
-        }
         if (Input.GetKey(KeyCode.W))
         {
             Debug.Log("Skill 02");
@@ -62,6 +63,13 @@ public class PlayerController : CreateController
 
     #region Player Skilled
 
+    public P_SkillHolder skillHolder;
+    public void skillHolded()
+    {
+        skillHolder = gameObject.AddComponent<P_SkillHolder>();
+        skillHolder.skill = new PS_FireBall();
+        skillHolder.key = KeyCode.Q;
+    }
 
     #endregion
 }

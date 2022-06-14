@@ -73,11 +73,9 @@ public class CreateController : MonoBehaviour
     /// 
     private void AnimationChanger(string name)
     {
-  
         for(int i =0; i<_animator.parameterCount;i++)
         {
             _animator.SetBool(_animator.parameters[i].name,false);
-            Debug.Log(_animator.parameters[i].name);
         }
         _animator.SetBool(name,true);
     }
