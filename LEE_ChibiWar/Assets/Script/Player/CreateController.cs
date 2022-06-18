@@ -58,11 +58,11 @@ public class CreateController : MonoBehaviour
     }
 
     // State
-    [SerializeField] protected int hp { get; set; }
-    [SerializeField] protected float speed { get; set; }
-    [SerializeField] protected float slideGage { get; set; }
-    [SerializeField] protected float slideSpeed { get; set; }
-    [SerializeField] protected int reGenHp { get; set; }
+    [SerializeField] public int hp { get; set; }
+    [SerializeField] public float speed { get; set; }
+    [SerializeField] public float slideGage { get; set; }
+    [SerializeField] public float slideSpeed { get; set; }
+    [SerializeField] public int reGenHp { get; set; }
 
     #endregion
 

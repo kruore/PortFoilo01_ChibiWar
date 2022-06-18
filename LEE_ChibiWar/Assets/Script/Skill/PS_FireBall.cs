@@ -20,4 +20,8 @@ public class PS_FireBall : Skill
     {
         base.Activate();
     }
+    public override void DeActive()
+    {
+        base.DeActive();
+    }
 }

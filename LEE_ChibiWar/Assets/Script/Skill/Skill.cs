@@ -15,6 +15,10 @@ public class Skill
 
     public virtual void Activate()
     {
-
+        skill_Effect.SetActive(true);
+    }
+    public virtual void DeActive()
+    {
+        skill_Effect.SetActive(false);
     }
 }

@@ -19,6 +19,8 @@ public class P_SkillHolder : MonoBehaviour
     public void start()
     {
         skill = new PS_FireBall();
+        activeTime = skill.activeTime;
+        cooldownTime = skill.coolTime;
     }
     private void FixedUpdate()
     {
@@ -27,17 +29,18 @@ public class P_SkillHolder : MonoBehaviour
             case SkillState.ready:
                 if (Input.GetKeyDown(key))
                 {
-                    skill.Activate();
                     state = SkillState.active;
                     activeTime = skill.activeTime;
-                    Instantiate(skill.skill_Effect, gameObject.transform);
-                    Debug.Log("Active");
-
+                    if (skill.skill_Effect == null)
+                    {
+                        skill.skill_Effect = Instantiate(skill.skill_Effect, gameObject.transform);
+                    }
+                    skill.Activate();
                     //Activate
                 }
                 break;
             case SkillState.active:
-                if(activeTime > 0)
+                if (activeTime > 0)
                 {
                     activeTime -= Time.deltaTime;
                 }
@@ -45,6 +48,7 @@ public class P_SkillHolder : MonoBehaviour
                 {
                     state = SkillState.cooldown;
                     cooldownTime = skill.coolTime;
+                    skill.DeActive();
                 }
                 break;
             case SkillState.cooldown:
@@ -58,6 +62,6 @@ public class P_SkillHolder : MonoBehaviour
                 }
                 break;
         }
-     
+
     }
 }
