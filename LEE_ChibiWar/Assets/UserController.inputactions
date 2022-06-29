@@ -1,0 +1,109 @@
+{
+    "name": "UserController",
+    "maps": [
+        {
+            "name": "Player",
+            "id": "9cd74597-5e3b-4db0-bf4d-c67866cf010b",
+            "actions": [
+                {
+                    "name": "Skill00",
+                    "type": "Button",
+                    "id": "aaee5e95-dbb2-4a39-af2e-c2e611f2c726",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
+                },
+                {
+                    "name": "Move",
+                    "type": "Button",
+                    "id": "b0d887d8-1e22-484f-9f75-3f200f6083f2",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Skill01",
+                    "type": "Button",
+                    "id": "68fbd800-bec3-4e75-935a-00ddf33c5c84",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
+                },
+                {
+                    "name": "Skill02",
+                    "type": "Button",
+                    "id": "31a3f979-5d0f-4759-a7bc-64015a4cf64a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Skill03",
+                    "type": "Button",
+                    "id": "7398cf85-9017-4de6-aa8e-2a2adb6eda5f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "2ed05abb-27e2-49db-979e-4cdb02b031a4",
+                    "path": "<Keyboard>/q",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Skill00",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ebe37e45-90d7-49f9-b059-a86bbe953694",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8eca29a8-be95-40d2-95ee-16c57facbcba",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Skill01",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1cf2099d-0e43-42e1-8b51-16d683d4e9cf",
+                    "path": "<Keyboard>/e",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Skill02",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b9b3a3e4-10f3-49cd-8f76-a4b8a80f53fa",
+                    "path": "<Keyboard>/r",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Skill03",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

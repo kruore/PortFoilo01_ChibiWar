@@ -14,14 +14,23 @@ public class PS_FireBall : Skill
         speed = 1;
         coolTime = 1;
         activeTime = 1;
-        skill_Effect = (GameObject)Resources.Load("Skill/PS_FireBall");
+        skillstate = EnumHolder.SkillState.ready;
+    }
+    public void Start()
+    {
+        DeActive();
     }
     public override void Activate()
     {
         base.Activate();
     }
-    public override void DeActive()
+    protected override void DeActive()
     {
         base.DeActive();
     }
+    public void FixedUpdate()
+    {
+        base.skill_Calculate();
+    }
+
 }

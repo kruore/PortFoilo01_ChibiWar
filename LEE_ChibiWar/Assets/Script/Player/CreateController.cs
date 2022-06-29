@@ -5,8 +5,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using System;
+
+
 
 // Player Scipts
 public class CreateController : MonoBehaviour
@@ -29,6 +31,7 @@ public class CreateController : MonoBehaviour
     public Vector3 playerRot;
     public Vector3 mousePos;
     public float rotAngle;
+    public bool isActiveMove;
 
     //Move Var
     public Vector3 destination;
@@ -43,8 +46,8 @@ public class CreateController : MonoBehaviour
         }
     }
 
-    [SerializeField]protected bool isHit;
-    [SerializeField]protected bool isMove;
+    [SerializeField] protected bool isHit;
+    [SerializeField] protected bool isMove;
     public bool Hited
     {
         get { return isHit; }
@@ -73,11 +76,11 @@ public class CreateController : MonoBehaviour
     /// 
     private void AnimationChanger(string name)
     {
-        for(int i =0; i<_animator.parameterCount;i++)
+        for (int i = 0; i < _animator.parameterCount; i++)
         {
-            _animator.SetBool(_animator.parameters[i].name,false);
+            _animator.SetBool(_animator.parameters[i].name, false);
         }
-        _animator.SetBool(name,true);
+        _animator.SetBool(name, true);
     }
     protected PlayerState StateChanger(PlayerState state)
     {
@@ -87,12 +90,18 @@ public class CreateController : MonoBehaviour
             case PlayerState.IDLE:
                 currentState = PlayerState.IDLE;
                 AnimationChanger("isIDLE");
+                isMove = false;
                 break;
             case PlayerState.MOVE:
                 currentState = PlayerState.MOVE;
                 AnimationChanger("isMove");
                 isMove = true;
-                Move();
+                if (CallMovement != null)
+                {
+                    StopCoroutine(CallMovement);
+                }
+                CallMovement = Move();
+                StartCoroutine(CallMovement);
                 break;
             case PlayerState.ATTACK:
                 currentState = PlayerState.ATTACK;
@@ -123,9 +132,9 @@ public class CreateController : MonoBehaviour
         reGenHp = 0;
     }
 
-    protected void OnMouseClick_LookAt(Vector3 mousePos)
+    protected void OnMouseClick_LookAt(InputAction.CallbackContext mousePos)
     {
-        Ray cameraRay = Camera.main.ScreenPointToRay(mousePos);
+        Ray cameraRay = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
         Plane GroupPlane = new Plane(Vector3.up, Vector3.zero);
 
         float rayLength;
@@ -135,13 +144,13 @@ public class CreateController : MonoBehaviour
             Vector3 pointTolook = cameraRay.GetPoint(rayLength);
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(pointTolook), 30 * Time.deltaTime);
             transform.LookAt(pointTolook);
-        //    transform.LookAt(new Vector3(pointTolook.x, transform.position.y, pointTolook.z));
+            //    transform.LookAt(new Vector3(pointTolook.x, transform.position.y, pointTolook.z));
         }
     }
 
-    protected void OnMouseClick_ToMove(Vector3 mousePos)
+    protected void OnMouseClick_ToMove(InputAction.CallbackContext mousePos)
     {
-        Ray cameraRay = Camera.main.ScreenPointToRay(mousePos);
+        Ray cameraRay = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
         Plane GroupPlane = new Plane(Vector3.up, Vector3.zero);
 
         float rayLength;
@@ -156,25 +165,37 @@ public class CreateController : MonoBehaviour
         destination = dest;
         StateChanger(PlayerState.MOVE);
     }
-    private void Move()
+    public IEnumerator Move()
     {
-        if (isMove)
+        while (isMove)
         {
             if (Vector3.Distance(destination, transform.position) <= 0.1f)
             {
-                isMove = false;
                 StateChanger(PlayerState.IDLE);
-                return;
+                yield return new WaitForFixedUpdate();
             }
-            var dir = destination - transform.position;
-            transform.position += dir.normalized * Time.deltaTime * 5f;
+            else
+            {
+                var dir = destination - transform.position;
+                transform.position += dir.normalized * Time.deltaTime * speed;
+                yield return new WaitForFixedUpdate();
+            }
         }
+        StopCoroutine(CallMovement);
     }
 
     #endregion
 
     #region Input System
 
+
+
+    private IEnumerator CallMovement;
+
+    private void Start()
+    {
+        CallMovement = Move();
+    }
 
     #endregion
 }

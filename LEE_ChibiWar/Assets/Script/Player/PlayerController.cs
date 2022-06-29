@@ -2,74 +2,84 @@
 /// MADE BY Lee Sang Jun /////////
 //////////////////////////////////
 
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using System;
+
+public enum Skill_Num
+{
+    skill00 = 0, skill01, skill02, skill03
+}
 
 // Player Scipts
 public class PlayerController : CreateController
 {
+    public UserController playerinput;
+
     #region Controller Override
+    private Skill_Num _skillCount = Skill_Num.skill00;
     // Started
     protected override void init()
     {
-        base.init();
         _animator = this.gameObject.GetComponent<Animator>();
+        playerinput = new UserController();
+        playerinput.Player.Skill00.performed += val => GetKey(val.ReadValue<float>(), (int)Skill_Num.skill00);
+        playerinput.Player.Skill01.performed += val => GetKey(val.ReadValue<float>(), (int)Skill_Num.skill01);
+        playerinput.Player.Skill02.performed += val => GetKey(val.ReadValue<float>(), (int)Skill_Num.skill02);
+        playerinput.Player.Skill03.performed += val => GetKey(val.ReadValue<float>(), (int)Skill_Num.skill03);
+        playerinput.Player.Move.performed += val => OnMouseClick_LookAt(val);
+        playerinput.Player.Move.performed += val => OnMouseClick_ToMove(val);
+
+        base.init();
     }
     #endregion
 
     #region Unity LifeCycle
 
-    private void Start()
+    private void Awake()
     {
-        skillHolded();
+        init();
+
+        // skillHolded();
     }
     private void FixedUpdate()
     {
-        GetKey();
+        //  GetKey();
     }
-    protected void GetKey()
+    protected void GetKey(float value, int skill_ID)
     {
-        if (isMove)
+        if (value > 0.5f && skillHolder.skill[skill_ID].GetComponent<Skill>().skillstate==EnumHolder.SkillState.ready)
         {
-            OnMouseClick_LookAt(mousePosition);
-            OnMouseClick_ToMove(mousePosition);
-        }
-        if (Input.GetMouseButton(1))
-        {
-            if(currentState==PlayerState.IDLE||currentState==PlayerState.MOVE)
-            {
-                isMove = true;
-                mousePosition = Input.mousePosition;
-            }
-        }
-        if (Input.GetKey(KeyCode.W))
-        {
-            Debug.Log("Skill 02");
-        }
-        if (Input.GetKey(KeyCode.E))
-        {
-            Debug.Log("Skill 03");
-        }
-        if (Input.GetKey(KeyCode.R))
-        {
-            Debug.Log("Skill 04");
+            skillHolder.skill[skill_ID].GetComponent<Skill>().Activate();
+            Debug.Log($"SkillActive{skill_ID}");
         }
     }
     #endregion
 
-
+    private void OnEnable()
+    {
+        playerinput.Enable();
+    }
+    private void OnDisable()
+    {
+        playerinput.Disable();
+    }
     #region Player Skilled
 
     public P_SkillHolder skillHolder;
     public void skillHolded()
     {
-        skillHolder = gameObject.AddComponent<P_SkillHolder>();
-        skillHolder.skill = new PS_FireBall();
-        skillHolder.key = KeyCode.Q;
+        //skillHolder = gameObject.AddComponent<P_SkillHolder>();
+        //skillHolder.skill = new PS_FireBall();
+        //skillHolder.key = KeyCode.Q;
     }
 
+    private void LateUpdate()
+    {
+        Camera.main.transform.position = new Vector3(transform.position.x,20, transform.position.z-20);
+    }
     #endregion
 }
