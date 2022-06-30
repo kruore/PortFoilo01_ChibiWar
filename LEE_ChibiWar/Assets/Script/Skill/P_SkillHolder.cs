@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-
-
 public class P_SkillHolder : MonoBehaviour
 {
     public static P_SkillHolder instance;
@@ -19,14 +17,13 @@ public class P_SkillHolder : MonoBehaviour
     public void Start()
     {
         instance = this;
-        skill[0] = U_SkillPool.instance.GetObject();
-        U_SkillPool.instance.Initialize(10);
-        for (int i = 0; i < skill.Length; i++)
-        {
-            activeTime[i] = skill[i].GetComponent<Skill>().activeTime;
-            cooldownTime[i] = skill[i].GetComponent<Skill>().coolTime;
-            state[i] = skill[i].GetComponent<Skill>().skillstate; 
-        }
+        //U_SkillPool.instance.Initialize(10,skill[0]);
+        //for (int i = 0; i < skill.Length; i++)
+        //{
+        //    activeTime[i] = skill[i].GetComponent<Skill>().activeTime;
+        //    cooldownTime[i] = skill[i].GetComponent<Skill>().coolTime;
+        //    state[i] = skill[i].GetComponent<Skill>().skillstate; 
+        //}
     }
 
     private void FixedUpdate()

@@ -120,6 +120,7 @@
     <Compile Include="Assets\Script\Skill\Skill.cs" />
     <Compile Include="Assets\Script\Utills\U_PlayerHPBar.cs" />
     <Compile Include="Assets\Script\Utills\U_SkillPool.cs" />
+    <Compile Include="Assets\U_SkillShop.cs" />
     <Compile Include="Assets\UserController.cs" />
   </ItemGroup>
   <ItemGroup>

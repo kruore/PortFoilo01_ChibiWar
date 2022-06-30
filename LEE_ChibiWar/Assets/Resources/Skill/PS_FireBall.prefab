@@ -19,8 +19,9 @@ MonoBehaviour:
   speed: 1
   coolTime: 1
   activeTime: 1
+  isReady: 0
   skillEffect: {fileID: 2159886335695278947}
-  skillstate: 0
+  skillstate: 1
   skillVelocity: 0
 --- !u!1001 &2160728991123323879
 PrefabInstance:

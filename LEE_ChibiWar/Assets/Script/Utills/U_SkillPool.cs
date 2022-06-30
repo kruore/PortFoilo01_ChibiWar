@@ -16,13 +16,13 @@ public class U_SkillPool : MonoBehaviour
     {
         instance = this;
     }
-    public void Initialize(int initCount,Skill skill)
+    public void Initialize(int initCount, Skill skill)
     {
         for (int i = 0; i < initCount; i++)
         {
             poolingObjectQueue.Enqueue(CreateSkillObject(skill));
         }
-    }   
+    }
     private Skill CreateSkillObject(Skill skill)
     {
         var newObj = Instantiate(skill);
@@ -42,9 +42,9 @@ public class U_SkillPool : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
-    public static Skill GetObject()
+    public static Skill GetObject(Skill skill)
     {
         if (instance.poolingObjectQueue.Count > 0)
         {
@@ -55,7 +55,7 @@ public class U_SkillPool : MonoBehaviour
         }
         else
         {
-            var newObj = instance.CreateSkillObject();
+            var newObj = instance.CreateSkillObject(skill);
             newObj.gameObject.SetActive(true);
             newObj.transform.SetParent(null);
             return newObj;
