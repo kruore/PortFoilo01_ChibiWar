@@ -9,7 +9,7 @@ public class U_SkillPool : MonoBehaviour
 
     [SerializeField]
     private GameObject m_skillObjectPrefab;
-
+    [SerializeField]
     Queue<Skill> poolingObjectQueue = new Queue<Skill>();
 
     private void Awake()
@@ -67,5 +67,13 @@ public class U_SkillPool : MonoBehaviour
         obj.gameObject.SetActive(false);
         obj.transform.SetParent(instance.transform);
         instance.poolingObjectQueue.Enqueue(obj);
+    }
+    public Skill GetSkill(int skillID)
+    {
+        //transform.GetChild(skillID).gameObject.SetActive(false);
+        var obj = instance.poolingObjectQueue.Dequeue();
+        obj.transform.SetParent(null);
+        obj.Activate();
+        return obj;
     }
 }

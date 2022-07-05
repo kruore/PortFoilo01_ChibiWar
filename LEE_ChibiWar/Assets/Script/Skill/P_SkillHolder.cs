@@ -17,12 +17,11 @@ public class P_SkillHolder : MonoBehaviour
     public void Start()
     {
         instance = this;
-        //U_SkillPool.instance.Initialize(10,skill[0]);
         //for (int i = 0; i < skill.Length; i++)
         //{
         //    activeTime[i] = skill[i].GetComponent<Skill>().activeTime;
         //    cooldownTime[i] = skill[i].GetComponent<Skill>().coolTime;
-        //    state[i] = skill[i].GetComponent<Skill>().skillstate; 
+        //    state[i] = skill[i].GetComponent<Skill>().skillstate;
         //}
     }
 
@@ -30,4 +29,6 @@ public class P_SkillHolder : MonoBehaviour
     {
 
     }
+
+
 }

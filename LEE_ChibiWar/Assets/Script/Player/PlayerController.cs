@@ -51,12 +51,15 @@ public class PlayerController : CreateController
     }
     protected void GetKey(float value, int skill_ID)
     {
-        if (value > 0.5f && skillHolder.skill[skill_ID].GetComponent<Skill>().skillstate==EnumHolder.SkillState.ready)
+        currentState = PlayerState.ATTACK;
+        if (value > 0.5f)
         {
-            skillHolder.skill[skill_ID].GetComponent<Skill>().Activate();
+            var SkillID = skillHolder.skill[skill_ID].id;
+            U_SkillPool.instance.GetSkill(SkillID);
             Debug.Log($"SkillActive{skill_ID}");
         }
     }
+
     #endregion
 
     private void OnEnable()
@@ -70,12 +73,6 @@ public class PlayerController : CreateController
     #region Player Skilled
 
     public P_SkillHolder skillHolder;
-    public void skillHolded()
-    {
-        //skillHolder = gameObject.AddComponent<P_SkillHolder>();
-        //skillHolder.skill = new PS_FireBall();
-        //skillHolder.key = KeyCode.Q;
-    }
 
     private void LateUpdate()
     {

@@ -8,8 +8,6 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using System;
 
-
-
 // Player Scipts
 public class CreateController : MonoBehaviour
 {

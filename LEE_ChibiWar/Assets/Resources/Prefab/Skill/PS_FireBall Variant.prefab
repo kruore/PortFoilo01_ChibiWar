@@ -7,6 +7,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2047242549627041963, guid: d139bb2edb0d63b42b2364310aa90aa2,
+        type: 3}
+      propertyPath: soundTrack
+      value: 
+      objectReference: {fileID: 8300000, guid: 0baf8600b856b794b90ef46e9e7fb215, type: 3}
     - target: {fileID: 2156241615318421915, guid: d139bb2edb0d63b42b2364310aa90aa2,
         type: 3}
       propertyPath: m_RootOrder
@@ -65,7 +70,12 @@ PrefabInstance:
     - target: {fileID: 2159886335695278947, guid: d139bb2edb0d63b42b2364310aa90aa2,
         type: 3}
       propertyPath: m_Name
-      value: PS_FireBall
+      value: PS_FireBall Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 8003253335597120205, guid: d139bb2edb0d63b42b2364310aa90aa2,
+        type: 3}
+      propertyPath: skillstate
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d139bb2edb0d63b42b2364310aa90aa2, type: 3}

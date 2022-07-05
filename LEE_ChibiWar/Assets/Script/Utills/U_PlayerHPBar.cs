@@ -18,7 +18,6 @@ public class U_PlayerHPBar : MonoBehaviour
         hpCamera = canvas.worldCamera;
         rectParent = canvas.GetComponent<RectTransform>();
         rectHp = GetComponent<RectTransform>();
-
     }
 
     private void LateUpdate()
