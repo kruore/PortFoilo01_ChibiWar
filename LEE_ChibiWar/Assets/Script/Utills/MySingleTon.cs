@@ -24,8 +24,6 @@ public class MySingleton<T> : MonoBehaviour where T : MonoBehaviour
         {
             if (m_ShuttingDown)
             {
-                Debug.LogWarning("[Singleton] Instance '" + typeof(T) +
-                "' already destroyed. Returning null.");
                 return null;
             }
 
@@ -43,12 +41,10 @@ public class MySingleton<T> : MonoBehaviour where T : MonoBehaviour
                         var singletonObject = new GameObject();
                         m_Instance = singletonObject.AddComponent<T>();
                         singletonObject.name = typeof(T).ToString() + " (Singleton)";
-
                         // Make instance persistent.
                         DontDestroyOnLoad(singletonObject);
                     }
                 }
-
                 return m_Instance;
             }
         }

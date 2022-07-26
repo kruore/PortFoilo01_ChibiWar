@@ -24,7 +24,7 @@ public class PS_FireBall : Skill
         this.gameObject.transform.position = Vector3.zero;
         base.Activate();
     }
-    protected override void DeActive()
+    protected override void DeActive()s
     {
         base.DeActive();
     }
@@ -32,6 +32,7 @@ public class PS_FireBall : Skill
     {
         Debug.Log("???");
         base.skill_Calculate();
+        
     }
 
 }
